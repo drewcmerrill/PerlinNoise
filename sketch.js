@@ -1,4 +1,4 @@
-var inc = .02; //changing inc essentially "zooms in" on the graph
+var inc = .01; //changing inc essentially "zooms in" on the graph
 var start = 0;
 function setup() {
 	createCanvas(600, 600);
