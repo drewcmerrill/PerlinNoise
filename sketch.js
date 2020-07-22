@@ -25,4 +25,8 @@ function draw() {
 		yoff += inc;
 	}
 	updatePixels();
+
+	//first parameter is the number of octaves used to calculate Perlin
+	//second paramet is fall off, the factor the octaves shrink. Detail .5 (they halve)
+	noiseDetail();
 }
