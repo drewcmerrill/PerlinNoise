@@ -1,22 +1,28 @@
-var inc = .01; //changing inc essentially "zooms in" on the graph
-var start = 0;
+var inc = .01;
+//var xoff = 0;
+//var yoff = 0;
 function setup() {
-	createCanvas(600, 600);
+	createCanvas(400, 400);
+	pixelDensity(1); //because I have a Mac with a Retina Display
 }
 
 function draw() {
-	background(51);
-	stroke(255);
-	noFill();
-	beginShape();
-	var yoff = start;
-	for(var x = 0; x < width; x++)
+	loadPixels();
+	var yoff = 0;
+	for(var y = 0; y < height; y++)
 	{
-		stroke(255);
-		var y = map(noise(yoff), 0, 1, 0, height);
-		vertex(x, y);
+		xoff = 0;
+		for(var x = 0; x < width; x++)
+		{
+			var index = (x + y * width) * 4;
+			var r = noise(xoff, yoff) * 255;
+			pixels[index + 0] = r; //red value
+			pixels[index + 1] = r; //green value
+			pixels[index + 2] = r; //blue value
+			pixels[index + 3] = 255; //alpha value
+			xoff += inc;
+		}
 		yoff += inc;
 	}
-	endShape();
-	start += inc;
+	updatePixels();
 }
